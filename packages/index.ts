@@ -27,9 +27,9 @@ import { provideGlobalConfig } from "element-plus";
 export const PureTable = Object.assign(Table, {
   install: function (
     app: App,
-    options: ConfigProviderContext | Ref<ConfigProviderContext>
+    options?: ConfigProviderContext | Ref<ConfigProviderContext>
   ) {
-    provideGlobalConfig(options, app, false);
+    if (options) provideGlobalConfig(options, app, false);
     app.component(Table.name, Table);
   }
 });
