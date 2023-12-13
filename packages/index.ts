@@ -19,11 +19,17 @@ export type {
   Size
 } from "./types";
 
-import type { App } from "vue";
+import type { App, Ref } from "vue";
+import type { ConfigProviderContext } from "element-plus";
 import Table from "./components/table";
+import { provideGlobalConfig } from "element-plus";
 
 export const PureTable = Object.assign(Table, {
-  install: function (app: App) {
+  install: function (
+    app: App,
+    options: ConfigProviderContext | Ref<ConfigProviderContext>
+  ) {
+    provideGlobalConfig(options, app, false);
     app.component(Table.name, Table);
   }
 });
